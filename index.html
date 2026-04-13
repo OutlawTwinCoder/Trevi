@@ -354,19 +354,22 @@
 
         .step-list li {
             padding: 0.5rem 0;
-            padding-left: 1.5rem;
+            padding-left: 1.8rem;
             position: relative;
             color: var(--text-primary);
             line-height: 1.6;
+            text-indent: -1.5rem;
+            margin-left: 1.5rem;
         }
 
         .step-list li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
+            content: '• ';
+            position: static;
             color: var(--primary);
             font-weight: bold;
             font-size: 1.2rem;
+            display: inline-block;
+            width: 1.5rem;
         }
 
         .result {
@@ -393,18 +396,21 @@
 
         .result-list li {
             padding: 0.3rem 0;
-            padding-left: 1.5rem;
+            padding-left: 1.8rem;
             position: relative;
             color: var(--text-primary);
             font-size: 0.95rem;
+            text-indent: -1.5rem;
+            margin-left: 1.5rem;
         }
 
         .result-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
+            content: '✓ ';
+            position: static;
             color: var(--success);
             font-weight: bold;
+            display: inline-block;
+            width: 1.5rem;
         }
 
         /* WARNING BOXES */
@@ -788,9 +794,17 @@
 
             .step-list li {
                 padding: 0.35rem 0;
-                padding-left: 1.2rem;
+                padding-left: 1.5rem;
                 font-size: 0.9rem;
-                line-height: 1.4;
+                line-height: 1.5;
+                text-indent: 0;
+                margin-left: 0;
+            }
+
+            .step-list li::before {
+                position: absolute;
+                left: 0;
+                display: block;
             }
 
             .result {
@@ -978,6 +992,16 @@
             .step-list li {
                 font-size: 0.85rem;
                 padding: 0.3rem 0;
+                padding-left: 1.4rem;
+                text-indent: 0;
+                margin-left: 0;
+            }
+
+            .step-list li::before {
+                position: absolute;
+                left: 0;
+                display: block;
+                width: auto;
             }
 
             .print-btn {
