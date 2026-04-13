@@ -28,6 +28,13 @@
             --text-primary: #1F2937;
             --text-secondary: #6B7280;
             --bg: #FFFFFF;
+            --display-mode: 'web';
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
@@ -42,6 +49,138 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+        }
+
+        /* MODE TOGGLE */
+        .mode-toggle {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 200;
+            border: 2px solid var(--primary);
+        }
+
+        .mode-btn {
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 40px;
+            background: var(--neutral-100);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .mode-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+        }
+
+        .mode-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* PHONE MODE STYLES */
+        body.phone-mode {
+            background: white;
+            --display-mode: 'phone';
+        }
+
+        body.phone-mode .container {
+            padding: 1rem;
+            max-width: 100%;
+        }
+
+        body.phone-mode .header {
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+        }
+
+        body.phone-mode .header h1 {
+            font-size: 1.8rem;
+        }
+
+        body.phone-mode .header p {
+            font-size: 1rem;
+        }
+
+        body.phone-mode .header-meta {
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        body.phone-mode .nav-tabs {
+            flex-wrap: nowrap;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        body.phone-mode .nav-btn {
+            padding: 0.6rem 1rem;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        body.phone-mode .steps-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        body.phone-mode .step-card {
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+
+        body.phone-mode .step-card h2 {
+            font-size: 1.1rem;
+        }
+
+        body.phone-mode .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        body.phone-mode table {
+            font-size: 0.85rem;
+        }
+
+        body.phone-mode th, body.phone-mode td {
+            padding: 0.6rem;
+        }
+
+        body.phone-mode .warning-box {
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        body.phone-mode .warning-box h3 {
+            font-size: 0.95rem;
+        }
+
+        body.phone-mode .info-box {
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        body.phone-mode .print-btn {
+            bottom: 1rem;
+            right: 1rem;
+            padding: 0.7rem 1rem;
+            font-size: 0.85rem;
+            border-radius: 40px;
         }
 
         /* HEADER */
@@ -513,46 +652,367 @@
             transform: scale(0.98);
         }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE - WEB MODE */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .header {
+                padding: 3rem 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        /* MOBILE OPTIMIZED */
         @media (max-width: 768px) {
+            .mode-toggle {
+                top: 0.8rem;
+                left: 0.8rem;
+                padding: 0.4rem;
+            }
+
+            .mode-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.75rem;
+            }
+
             .container {
                 padding: 1rem;
             }
 
             .header {
-                padding: 2rem 1rem;
+                padding: 1.5rem 1rem;
+                margin-bottom: 1.5rem;
+                border-radius: 12px;
+            }
+
+            .header::before {
+                width: 400px;
+                height: 400px;
+                top: -30%;
+                right: -15%;
+            }
+
+            .header-content {
+                text-align: center;
             }
 
             .header h1 {
-                font-size: 2rem;
+                font-size: 1.6rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .header p {
+                font-size: 0.95rem;
+                margin-bottom: 0.8rem;
             }
 
             .header-meta {
-                gap: 1rem;
-                font-size: 0.85rem;
+                flex-direction: column;
+                gap: 0.3rem;
+                font-size: 0.75rem;
+            }
+
+            .nav-tabs {
+                flex-wrap: nowrap;
+                gap: 0.4rem;
+                padding: 0.6rem;
+                margin-bottom: 1.5rem;
+                margin-bottom: 0;
+                border-radius: 8px;
+            }
+
+            .nav-tabs::-webkit-scrollbar {
+                height: 3px;
+            }
+
+            .nav-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.75rem;
+                border-radius: 6px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .section {
+                margin-bottom: 2rem;
             }
 
             .section-title {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+                padding-bottom: 0.8rem;
+                gap: 0.5rem;
+            }
+
+            .emoji {
+                font-size: 1.2rem;
+                margin-right: 0.3rem;
             }
 
             .steps-grid {
                 grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .step-card {
+                padding: 1.2rem;
+                border-radius: 10px;
+                border-left: 3px solid var(--primary);
+            }
+
+            .step-card h2 {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .step-subtitle {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .step-number {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .step-list li {
+                padding: 0.35rem 0;
+                padding-left: 1.2rem;
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            .result {
+                padding: 0.8rem;
+                margin-top: 0.8rem;
+            }
+
+            .result-title {
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .result-list li {
+                padding: 0.2rem 0;
+                padding-left: 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .warning-box {
+                padding: 1rem;
+                margin: 1rem 0;
+                border-radius: 8px;
+            }
+
+            .warning-box h3 {
+                font-size: 0.9rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .warning-box p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+            }
+
+            .info-box {
+                padding: 1rem;
+                margin: 1rem 0;
+                border-radius: 8px;
+            }
+
+            .info-box h4 {
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .info-box p {
+                font-size: 0.8rem;
+                line-height: 1.5;
+            }
+
+            .table-wrapper {
+                border-radius: 8px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            table {
+                font-size: 0.8rem;
+                min-width: 600px;
+            }
+
+            th {
+                padding: 0.6rem;
+                font-size: 0.75rem;
+            }
+
+            td {
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .checklist {
+                padding: 1rem;
+                gap: 0.6rem;
+            }
+
+            .checklist-item {
+                gap: 0.8rem;
+                padding: 0.6rem;
+            }
+
+            .checklist-item input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+            }
+
+            .checklist-item label {
+                font-size: 0.9rem;
+            }
+
+            .badge {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.7rem;
+                margin: 0.2rem;
+            }
+
+            .footer {
+                padding: 1.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .footer p {
+                font-size: 0.8rem;
+                margin-bottom: 0.3rem;
             }
 
             .print-btn {
                 bottom: 1rem;
                 right: 1rem;
-                padding: 0.75rem 1rem;
-                font-size: 0.9rem;
+                padding: 0.6rem 0.9rem;
+                font-size: 0.8rem;
+                border-radius: 40px;
             }
 
-            table {
+            .print-btn span:last-child {
+                display: none;
+            }
+
+            .print-btn span:first-child {
+                margin-right: 0;
+            }
+        }
+
+        /* EXTRA SMALL PHONES */
+        @media (max-width: 480px) {
+            .mode-toggle {
+                top: 0.6rem;
+                left: 0.6rem;
+            }
+
+            .mode-btn {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.7rem;
+            }
+
+            .container {
+                padding: 0.8rem;
+            }
+
+            .header {
+                padding: 1.2rem 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.4rem;
+            }
+
+            .header p {
                 font-size: 0.85rem;
             }
 
+            .header-meta {
+                font-size: 0.7rem;
+            }
+
+            .nav-tabs {
+                padding: 0.5rem;
+                gap: 0.3rem;
+                margin-bottom: 1rem;
+            }
+
+            .nav-btn {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.65rem;
+            }
+
+            .section {
+                margin-bottom: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .step-card {
+                padding: 1rem;
+            }
+
+            .step-card h2 {
+                font-size: 0.95rem;
+            }
+
+            .step-list li {
+                font-size: 0.85rem;
+                padding: 0.3rem 0;
+            }
+
+            .print-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.7rem;
+            }
+
+            table {
+                font-size: 0.7rem;
+                min-width: 500px;
+            }
+
             th, td {
-                padding: 0.75rem;
+                padding: 0.5rem;
+            }
+        }
+
+        /* LANDSCAPE MODE */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .header {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.3rem;
+                margin-bottom: 0.2rem;
+            }
+
+            .section {
+                margin-bottom: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
             }
         }
 
@@ -605,6 +1065,16 @@
     </style>
 </head>
 <body>
+    <!-- MODE TOGGLE -->
+    <div class="mode-toggle">
+        <button class="mode-btn active" id="webModeBtn" onclick="setMode('web')">
+            <span>🖥️ Web</span>
+        </button>
+        <button class="mode-btn" id="phoneModeBtn" onclick="setMode('phone')">
+            <span>📱 Phone</span>
+        </button>
+    </div>
+
     <!-- HEADER -->
     <div class="container">
         <div class="header">
@@ -1576,6 +2046,35 @@
     </button>
 
     <script>
+        // Mode toggle
+        function setMode(mode) {
+            if (mode === 'phone') {
+                document.body.classList.add('phone-mode');
+                document.getElementById('phoneModeBtn').classList.add('active');
+                document.getElementById('webModeBtn').classList.remove('active');
+                localStorage.setItem('fieldServiceMode', 'phone');
+            } else {
+                document.body.classList.remove('phone-mode');
+                document.getElementById('webModeBtn').classList.add('active');
+                document.getElementById('phoneModeBtn').classList.remove('active');
+                localStorage.setItem('fieldServiceMode', 'web');
+            }
+        }
+
+        // Load saved mode
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedMode = localStorage.getItem('fieldServiceMode') || 'web';
+            setMode(savedMode);
+
+            // Auto-detect phone on mobile
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const isSmallScreen = window.innerWidth < 768;
+            
+            if (isMobile && isSmallScreen) {
+                setMode('phone');
+            }
+        });
+
         // Scroll to section
         function scrollToSection(id) {
             const element = document.getElementById(id);
@@ -1605,6 +2104,14 @@
                     btn.classList.add('active');
                 }
             });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const isSmallScreen = window.innerWidth < 768;
+            if (isSmallScreen && !document.body.classList.contains('phone-mode')) {
+                // Optional: auto-switch to phone mode on resize
+            }
         });
     </script>
 </body>
